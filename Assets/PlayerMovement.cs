@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration = 10;
     public float deceleration = 10;
     public float power = 0.96f;
+    public Animator animator;
 
     void Start() // Start is called before the first frame update
     {
@@ -37,5 +38,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movement = new Vector2(Mathf.Pow(Mathf.Abs(speedDiff.x) * accelRate.x, power) * Mathf.Sign(speedDiff.x),
                                       Mathf.Pow(Mathf.Abs(speedDiff.y) * accelRate.y, power) * Mathf.Sign(speedDiff.y));
         rigidbody.AddForce(new Vector3 (movement.x, 0, movement.y));
+        animator.SetFloat("speed_y", move.y);
+        animator.SetFloat("speed_x", move.x);
     }
 }
